@@ -31,7 +31,7 @@ public class Cliente implements ConstantesComunicacion{
 			//enviar el mensaje al servidor
 			streamOutput = clienteSocket.getOutputStream();
 			salidaServidor = new DataOutputStream(streamOutput);
-			salidaServidor.writeChars(pMensaje);
+			salidaServidor.writeBytes(pMensaje);
 			
 			clienteSocket.close();
 		} catch (IOException e) {

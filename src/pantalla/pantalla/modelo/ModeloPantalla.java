@@ -10,11 +10,12 @@ public class ModeloPantalla {
 	/* Esta clase es el modelo del MVC de la pantalla
 	 * */
 	protected Tablero tablero;
-	protected ArrayList<String> colaComandos;
+	public ArrayList<String> colaComandos;
 	//recibe informacion entonces debe usar servidor
 	public Servidor servidor;
 	public ModeloPantalla() {
 		tablero = new Tablero(Tamanno.NORMAL);
+		colaComandos = new ArrayList<String>();
 		try {
 			servidor = new Servidor(ConstantesComunicacion.Consola_Pantalla);
 		} catch (IOException e) {

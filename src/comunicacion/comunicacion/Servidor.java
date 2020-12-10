@@ -60,6 +60,7 @@ public class Servidor implements ConstantesComunicacion{
                 mensaje += linea;//formar linea a linea el mensaje
                 
             }
+
 			//System.out.println("mensaje recibido "+mensaje);
 		} catch (IOException e) {
 			System.err.println("No se pudo recibir el mensaje del cliente");
