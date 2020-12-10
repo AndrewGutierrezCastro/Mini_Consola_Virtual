@@ -18,7 +18,7 @@ public class DispositivoEntrada {
 
 	public DispositivoEntrada() {
 		try {
-			cliente = new Cliente(ConstantesComunicacion.Controlador_Consola);
+			cliente = new Cliente(ConstantesComunicacion.Consola_Pantalla);
 		} catch (UnknownHostException e) {
 			System.err.println("Dispositivo entrada: No se encuentra el host");
 		} catch (IOException e) {

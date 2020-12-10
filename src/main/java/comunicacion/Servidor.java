@@ -25,6 +25,22 @@ public class Servidor implements ConstantesComunicacion{
 		//de la interfaz de constantes para comunicacion.
 		clienteSocket = new Socket();
 	}
+	public void aceptarCliente() throws IOException {
+		//Aceptar al cliente
+		clienteSocket = serverSocket.accept();
+		//System.out.println("cliente aceptado");
+	}
+	
+	public void cerrarServidor() throws IOException {
+		//Cerrar el socket del servidor
+		serverSocket.close();
+	}
+	
+	public void cerrarCliente() throws IOException {
+		//cerrar el socket del cliente
+		clienteSocket.close();
+	}
+	
 	public void esperarMensaje() {
 		//Necesario para recibir el mensaje del cliente
 		InputStream inputStream; 
@@ -32,13 +48,7 @@ public class Servidor implements ConstantesComunicacion{
 		BufferedReader entrada;
 		
 		try {
-			//Aceptar al cliente
-			clienteSocket = serverSocket.accept();
-			
-			
-			//enviar una respuesta al cliente que se acepto en el socket
-			//TODO revisar enviarRespuesta();
-			System.out.println("Respuesta enviada");
+				
 			inputStream = clienteSocket.getInputStream();
 			inputStreamReader = new InputStreamReader(inputStream);
 			entrada = new BufferedReader(inputStreamReader);
@@ -50,8 +60,7 @@ public class Servidor implements ConstantesComunicacion{
                 mensaje += linea;//formar linea a linea el mensaje
                 
             }
-			System.out.println("mensaje recibido Server");
-			
+			//System.out.println("mensaje recibido "+mensaje);
 		} catch (IOException e) {
 			System.err.println("No se pudo recibir el mensaje del cliente");
 		}
@@ -63,7 +72,7 @@ public class Servidor implements ConstantesComunicacion{
 		//obtener el flujo de informacion para enviarle mensajes
 		OutputStream outputStream = clienteSocket.getOutputStream();
 		salidaCliente = new DataOutputStream(outputStream);
-		salidaCliente.writeChars("Mensaje respuesta del puerto: "+serverSocket.getLocalPort());
+		salidaCliente.writeUTF("Mensaje respuesta del puerto: "+serverSocket.getLocalPort());
 		
 	}
 	

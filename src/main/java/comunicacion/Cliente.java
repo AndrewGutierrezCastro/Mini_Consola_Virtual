@@ -28,14 +28,11 @@ public class Cliente implements ConstantesComunicacion{
 		try {
 			abrirSocket();
 			
-			//TODO revisar recibirRespuesta();
-			//System.out.println(respuesta);
-			
 			//enviar el mensaje al servidor
 			streamOutput = clienteSocket.getOutputStream();
 			salidaServidor = new DataOutputStream(streamOutput);
 			salidaServidor.writeChars(pMensaje);
-			System.out.println("Info enviada");
+			
 			clienteSocket.close();
 		} catch (IOException e) {
 			System.err.println("Error al enviar el mensaje: "+pMensaje);
@@ -58,11 +55,10 @@ public class Cliente implements ConstantesComunicacion{
 		String linea;
 		respuesta = "";
 		
-		//while((linea = response.readLine()) != null) {
-		System.out.println("Recibir respuesta Cliente");	
-		 System.out.println(response.read());
+		while((linea = response.readLine()) != null) {	
+			respuesta += linea;
 			
-		//}
+		}
 	}
 	
 	private void abrirSocket() throws UnknownHostException, IOException {
