@@ -8,7 +8,7 @@ public class Tablero implements ConstantesPantalla{
 	/*
 	 * La clase tablero tiene un tablero de componentes graficos
 	 * */
-	public JButton casillas[][];
+	public JButton botones[][];
 	
 	public Tablero(Tamanno tamanno) {
 		crearTablero(tamanno);
@@ -17,10 +17,10 @@ public class Tablero implements ConstantesPantalla{
 	public void crearTablero(Tamanno tamanno) {
 		switch (tamanno) {
 		case NORMAL:
-			casillas = new JButton[normal.x][normal.y];
+			botones = new JButton[normal.x][normal.y];
 			break;
 		case GRANDE:
-			casillas = new JButton[grande.x][grande.y];
+			botones = new JButton[grande.x][grande.y];
 			break;
 
 		default:

@@ -1,0 +1,9 @@
+{
+	"comando": "DISPOSITIVOENTRADA",
+	"acciones":[
+		"VK_UP",
+		"VK_DOWN"
+	],
+	"pixeles":[]
+
+}

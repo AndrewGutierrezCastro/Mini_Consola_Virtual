@@ -1,1 +1,2 @@
 https://www.programarya.com/Cursos-Avanzados/Java/Sockets
+https://mkyong.com/java/how-do-convert-java-object-to-from-json-format-gson-api/

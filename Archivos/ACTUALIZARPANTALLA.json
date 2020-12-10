@@ -1,0 +1,17 @@
+{
+	"comando": "ACTUALIZARPANTALLA",
+	"acciones": [],
+	"pixeles":[{
+		
+			"posicionX": 0,
+			"posicionY": 0,
+			"color": 0
+		},
+		{
+			"posicionX": 1,
+			"posicionY": 1,
+			"color": 0
+		}
+	]
+
+}
