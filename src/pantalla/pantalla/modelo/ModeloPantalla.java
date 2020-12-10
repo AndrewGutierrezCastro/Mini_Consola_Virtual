@@ -1,7 +1,7 @@
 package pantalla.modelo;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 import Helpers.Tamanno;
 import comunicacion.Servidor;
 import controlador.ConstantesComunicacion;
@@ -10,7 +10,7 @@ public class ModeloPantalla {
 	/* Esta clase es el modelo del MVC de la pantalla
 	 * */
 	protected Tablero tablero;
-	
+	protected ArrayList<String> colaComandos;
 	//recibe informacion entonces debe usar servidor
 	public Servidor servidor;
 	public ModeloPantalla() {

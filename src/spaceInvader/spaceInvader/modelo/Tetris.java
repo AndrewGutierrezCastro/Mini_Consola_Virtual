@@ -1,4 +1,4 @@
-package consola.modelo;
+package spaceInvader.modelo;
 
 import java.io.IOException;
 
