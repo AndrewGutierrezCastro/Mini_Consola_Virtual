@@ -27,7 +27,7 @@ public class Main {
 		  main2(args); 
 		  DispositivoEntrada dp = new DispositivoEntrada();
 		  System.out.println("Hola mundo"); 
-		  FileReader file = ManejoArchivo.readJson(TipoComando.DISPOSITIVOENTRADA.toString());
+		  FileReader file = ManejoArchivo.readJson(TipoComando.ACTUALIZARPANTALLA.toString());
 		  Comando comando = CreadorObjetos.getComando(file);
 		  String str = CreadorObjetos.getJson(comando); 
 		  dp.enviarMensaje(str); 

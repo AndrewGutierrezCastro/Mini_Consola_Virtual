@@ -1,8 +1,8 @@
 package pantalla.modelo;
 
 public class Casilla{
-	private int posicionX, posicionY;
-	private int color;
+	public int posicionX, posicionY;
+	public int color;
 	public Casilla(int posicionX, int posicionY, int color) {
 		super();
 		this.posicionX = posicionX;

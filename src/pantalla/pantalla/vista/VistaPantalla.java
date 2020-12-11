@@ -1,18 +1,21 @@
 package pantalla.vista;
 
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import pantalla.controlador.ControladorPantalla;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import pantalla.modelo.Tablero;
+import javax.swing.JPanel;
+
+import java.awt.Color;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class VistaPantalla {
 
 	private JFrame frame;
-	public JTextArea textArea;
-	public ControladorPantalla controlador;
-	public JButton btnIniciarServidor;
-	public VistaPantalla(ControladorPantalla pControlador) {
-		controlador = pControlador;
+	private JPanel panel;
+	
+	public VistaPantalla() {
 		initialize();
 		frame.setVisible(true);
 		
@@ -23,18 +26,43 @@ public class VistaPantalla {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 773, 797);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		textArea = new JTextArea();
-		textArea.setBounds(10, 11, 393, 213);
-		frame.getContentPane().add(textArea);
+		panel = new JPanel();
+		panel.setBounds(5, 5, 750, 750);
+		frame.getContentPane().add(panel);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 400, Short.MAX_VALUE)
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 750, Short.MAX_VALUE)
+		);
+		panel.setLayout(gl_panel);
 		
-		btnIniciarServidor = new JButton("Iniciar Servidor");
-		btnIniciarServidor.addActionListener(controlador);
-		btnIniciarServidor.setActionCommand("IniciarServidor");
-		btnIniciarServidor.setBounds(266, 235, 137, 23);
-		frame.getContentPane().add(btnIniciarServidor);
+	}
+	
+	public void cargarTablero(Tablero pTablero) {
+		/* Este metodo recibe un objeto tablero el cual se necesita
+		 * para cargar la matriz de botones
+		 * */
+		JButton boton;
+		for (int i = 0; i < pTablero.botones.length; i++) {
+            
+            for (int j = 0; j < pTablero.botones[0].length; j++) {
+            	boton = pTablero.botones[i][j];
+            	this.panel.add(boton);
+            	boton.setBounds(15*j, 15*i, 15, 15);
+                boton.setFocusable(false);
+                boton.setOpaque(true);
+                boton.setEnabled(false);
+                boton.setBorderPainted(false);
+                boton.setBackground(Color.DARK_GRAY);
+			}
+		}
 	}
 }

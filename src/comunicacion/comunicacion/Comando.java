@@ -10,8 +10,8 @@ public class Comando {
 		DISPOSITIVOENTRADA;
 	}
 	private TipoComando comando;
-	private List<Casilla> pixeles;
-	private List<String> acciones;
+	public List<Casilla> pixeles;
+	public List<String> acciones;
 	public Comando(TipoComando comando, List<Casilla> pixeles, List<String> acciones) {
 		super();
 		this.comando = comando;
