@@ -1,2 +1,4 @@
 https://www.programarya.com/Cursos-Avanzados/Java/Sockets
 https://mkyong.com/java/how-do-convert-java-object-to-from-json-format-gson-api/
+https://dev.to/eddiescj/what-is-java-reflection-and-how-to-use-9je
+https://github.com/AndrewGutierrezCastro

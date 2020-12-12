@@ -1,14 +1,13 @@
 package spaceInvader.modelo;
 
 import java.io.IOException;
-
 import comunicacion.Servidor;
 import controlador.ConstantesComunicacion;
 
-public class Tetris {
+public class SpaceInvader {
 	public Servidor servidor;
 
-	public Tetris() {
+	public SpaceInvader() {
 		try {
 			servidor = new Servidor(ConstantesComunicacion.Controlador_Consola);
 		} catch (IOException e) {
@@ -16,6 +15,8 @@ public class Tetris {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	
 }
