@@ -2,7 +2,6 @@ package consola;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import comunicacion.Cliente;
 import comunicacion.Comando;
 import comunicacion.Servidor;
@@ -10,8 +9,8 @@ import controlador.ConstantesComunicacion;
 
 public class Consola {
 	
-	private ArrayList<String> colaRawComandos;
-	private ArrayList<Comando> colaComandos;
+	protected ArrayList<String> colaRawComandos;
+	protected ArrayList<Comando> colaComandos;
 	
 	private Servidor servidor;
 	private Cliente cliente;
@@ -36,6 +35,7 @@ public class Consola {
 		
 		hilo_Consola_Pantalla.start();
 		hilo_Controlador_Consola.start();
+
 	}
 	
 	private void crearComunicaciones() {

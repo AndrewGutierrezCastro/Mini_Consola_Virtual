@@ -4,7 +4,33 @@ import java.util.List;
 import pantalla.modelo.Casilla;
 
 public class Comando {
-	
+	/*
+	 * {
+	"comando": "ACTUALIZARPANTALLA",
+	"acciones": [],
+	"pixeles":[{
+		
+			"posicionX": 0,
+			"posicionY": 0,
+			"color": 0
+		},
+		{
+			"posicionX": 1,
+			"posicionY": 1,
+			"color": 0
+		}
+	]
+
+	} o bien
+	{
+		"comando": "DISPOSITIVOENTRADA",
+		"acciones":[
+			"Right",
+			"Up"
+		],
+		"pixeles":[]
+	}
+	 * */
 	public enum TipoComando{
 		ACTUALIZARPANTALLA,
 		DISPOSITIVOENTRADA;

@@ -4,6 +4,7 @@ import consola.Consola;
 import controlador.DispositivoEntrada;
 import controlador.Teclado;
 import pantalla.controlador.ControladorPantalla;
+import spaceInvader.modelo.SpaceInvader;
 
 public class Main {
 
@@ -27,8 +28,8 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//ControladorPantalla ctPan = new ControladorPantalla();
-					Consola consola = new Consola();
+					ControladorPantalla ctPan = new ControladorPantalla();
+					Consola consola = new SpaceInvader();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -35,7 +35,6 @@ public class Teclado extends DispositivoEntrada implements KeyListener, ActionLi
 		
 	}
 
-	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -48,13 +47,9 @@ public class Teclado extends DispositivoEntrada implements KeyListener, ActionLi
 		
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		procesarEntrada(e.getActionCommand().toUpperCase());
 	}
-
-	
-	
 }

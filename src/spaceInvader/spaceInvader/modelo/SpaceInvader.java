@@ -1,19 +1,20 @@
 package spaceInvader.modelo;
 
-import java.io.IOException;
-import comunicacion.Servidor;
-import controlador.ConstantesComunicacion;
+import java.util.ArrayList;
 
-public class SpaceInvader {
-	public Servidor servidor;
+import comunicacion.Comando;
+import comunicacion.Comando.TipoComando;
+import consola.Consola;
+import pantalla.modelo.Casilla;
 
+public class SpaceInvader extends Consola {
+	
+	
 	public SpaceInvader() {
-		try {
-			servidor = new Servidor(ConstantesComunicacion.Controlador_Consola);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		super();
+		ArrayList<Casilla> arr = new ArrayList<Casilla>();
+		arr.add(new Casilla(0, 1, 255));
+		this.colaComandos.add(new Comando(TipoComando.ACTUALIZARPANTALLA, arr , null));
 	}
 	
 	
