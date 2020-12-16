@@ -25,10 +25,10 @@ public class Controlador_Consola implements Runnable{
 
 		while(true) {		
 			try {
-				Thread.sleep(100);
+				Thread.sleep(10);
 				
 				recibirInformacion();
-				System.out.println(colaRawComandos.get(0));
+				//System.out.println(colaRawComandos.get(0));
 				
 			} catch (InterruptedException e) {
 				System.out.println("No se pudo ejecutar el comando");

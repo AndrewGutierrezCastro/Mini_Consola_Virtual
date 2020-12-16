@@ -1,28 +1,28 @@
 package pantalla.modelo;
-import javax.swing.ImageIcon;
 
 public class Casilla{
-	public int posicionX, posicionY;
-	public int color;
-	public String nombreImagen;
+	public int X, Y;
+	public int c;
+	public String nI;
 	public Casilla(int posicionX, int posicionY, int color) {
 		super();
-		this.posicionX = posicionX;
-		this.posicionY = posicionY;
-		this.color = color;
+		this.X = posicionX;
+		this.Y = posicionY;
+		this.c = color;
 	}
 	
 	public Casilla(int posicionX, int posicionY, int color, String nombreImagen) {
 		super();
-		this.posicionX = posicionX;
-		this.posicionY = posicionY;
-		this.color = color;
-		this.nombreImagen = nombreImagen;
+		this.X = posicionX;
+		this.Y = posicionY;
+		this.c = color;
+		this.nI = nombreImagen;
 	}
 
 	@Override
 	public String toString() {
-		return "Casilla [posicionX=" + posicionX + ", posicionY=" + posicionY + ", color=" + color + "]";
+		return "Casilla [posicionX=" + X + ", posicionY=" + Y + ", color=" + c + ", nombreImagen="
+				+ nI + "]";
 	}
 
 	

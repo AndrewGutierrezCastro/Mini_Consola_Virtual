@@ -33,7 +33,7 @@ public class Cliente implements ConstantesComunicacion{
 			salidaServidor = new DataOutputStream(streamOutput);
 			salidaServidor.writeBytes(pMensaje);
 			
-			clienteSocket.close();
+			cerrarSocket();
 		} catch (IOException e) {
 			System.err.println("Error al enviar el mensaje: "+pMensaje);
 			System.out.println("Puerto: "+puerto);
@@ -61,9 +61,13 @@ public class Cliente implements ConstantesComunicacion{
 		}
 	}
 	
-	private void abrirSocket() throws UnknownHostException, IOException {
+	public void abrirSocket() throws UnknownHostException, IOException {
 		if(clienteSocket == null || clienteSocket.isClosed()) {
 			clienteSocket = new Socket(HOST, puerto);}
+	}
+	
+	public void cerrarSocket() throws IOException {
+		clienteSocket.close();
 	}
 	
 	public String getRespuesta() {

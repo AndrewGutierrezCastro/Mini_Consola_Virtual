@@ -37,12 +37,14 @@ public class vTeclado {
 	 */
 	private void initialize() {
 		frmMandoteclado = new JFrame();
+		frmMandoteclado.setAlwaysOnTop(true);
 		frmMandoteclado.getContentPane().setBackground(Color.WHITE);
 		frmMandoteclado.setBackground(Color.WHITE);
 		frmMandoteclado.setResizable(false);
 		frmMandoteclado.setTitle("Mando-Teclado");
 		frmMandoteclado.setBounds(100, 100, 566, 230);
 		frmMandoteclado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMandoteclado.setFocusable(false);
 		
 		
 		//crear los botones

@@ -1,5 +1,6 @@
 package pantalla.controlador;
 
+import Helpers.Tamanno;
 import comunicacion.Comando;
 import comunicacion.CreadorObjetos;
 import pantalla.modelo.ModeloPantalla;
@@ -10,8 +11,8 @@ public class ControladorPantalla implements Runnable{
 	public ModeloPantalla mPantalla;
 	protected VistaPantalla vPantalla;
 	private Thread hilo;
-	public ControladorPantalla() {
-		mPantalla = new ModeloPantalla();
+	public ControladorPantalla(Tamanno tamanno) {
+		mPantalla = new ModeloPantalla(tamanno);
 		vPantalla = new VistaPantalla();
 		vPantalla.cargarTablero(mPantalla.tablero);
 		hilo = new Thread(this);
@@ -20,7 +21,11 @@ public class ControladorPantalla implements Runnable{
 	}
 	private void ejecutarComando() {
 		for (Comando comando : mPantalla.colaComandos) {
-			mPantalla.tablero.actualizar(comando);
+			try {
+				mPantalla.tablero.actualizar(comando);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	@Override
@@ -28,10 +33,11 @@ public class ControladorPantalla implements Runnable{
 		Comando comando;
 		while(true) {		
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1);
 				if(mPantalla.colaRawComandos.size() > 0) {
-					comando = CreadorObjetos.getComando(mPantalla.colaRawComandos.remove(0));
-					mPantalla.colaComandos.add(comando);
+					for (int i = 0; i < mPantalla.colaRawComandos.size(); i++) {
+						mPantalla.colaComandos.add(CreadorObjetos.getComando(mPantalla.colaRawComandos.remove(0)));
+					}
 					ejecutarComando();
 				}
 			} catch (InterruptedException e) {

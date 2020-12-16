@@ -9,7 +9,7 @@ import controlador.ConstantesComunicacion;
 
 public class Consola {
 	
-	protected ArrayList<String> colaRawComandos;
+	public ArrayList<String> colaRawComandos;
 	protected ArrayList<Comando> colaComandos;
 	
 	private Servidor servidor;

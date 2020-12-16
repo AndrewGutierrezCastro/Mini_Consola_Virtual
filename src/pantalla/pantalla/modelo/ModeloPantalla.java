@@ -18,8 +18,8 @@ public class ModeloPantalla implements Runnable{
 	private Thread hilo;//Este hilo se encarga de escuchar solicitudes y sumarlas a la cola
 	//recibe informacion entonces debe usar servidor
 	public Servidor servidor;
-	public ModeloPantalla() {
-		tablero = new Tablero(Tamanno.NORMAL);
+	public ModeloPantalla(Tamanno tamanno) {
+		tablero = new Tablero(tamanno);
 		colaComandos = new ArrayList<Comando>();
 		colaRawComandos = new ArrayList<String>();
 		crearServidor();
@@ -45,7 +45,7 @@ public class ModeloPantalla implements Runnable{
 		
 		while(true) {		
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1);
 				recibirInformacion();
 			} catch (InterruptedException e) {
 				System.out.println("No se puedo instanciar el comando");

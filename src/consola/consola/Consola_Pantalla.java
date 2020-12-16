@@ -25,11 +25,12 @@ public class Consola_Pantalla implements Runnable{
 		Comando comando;
 		while(true) {		
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1);
 				if(colaComandos.size() > 0) {
 					comando = colaComandos.remove(0);
 					mensaje = CreadorObjetos.getJson(comando);
 					cliente.enviarMensaje(mensaje);
+					//System.out.println("enviando: "+comando);
 				}
 			} catch (InterruptedException e) {
 				System.out.println("No se pudo ejecutar el comando");
