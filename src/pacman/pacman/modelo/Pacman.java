@@ -35,8 +35,8 @@ public class Pacman extends Consola implements Runnable{
 		for (int i = 0; i < matrizPacman.length; i++) {
 			
 			for (int j = 0; j < matrizPacman.length; j++) {
-				arr.add(new Casilla(i, j,Color.GRAY.getRGB(), ""));
 				this.matrizPacman[i][j] = new ComidaPacman(i, j, "");
+				arr.add(new Casilla(i, j,this.matrizPacman[i][j].color, ""));
 			}
 		}
 		Comando comando = new Comando(TipoComando.AP, arr , null);
@@ -49,6 +49,7 @@ public class Pacman extends Consola implements Runnable{
 		 */
 		
 		Comando comando = CreadorObjetos.getComando(ManejoArchivo.readJson("PACMANMURO"));
+		System.out.println(comando);
 		for (Casilla casilla : comando.p) {
 			
 			casilla.nI = "";
@@ -80,7 +81,7 @@ public class Pacman extends Consola implements Runnable{
 	}
 
 	@Override
-	public synchronized void run() {
+	public void run() {
 		
 		Comando comando;
 		while(true) {	

@@ -9,7 +9,7 @@ public class VacioPacman extends CasillaPacman{
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		this.nombreImagen = imagen;
-		this.color = Color.RED.getRGB();
+		this.color = Color.GRAY.getRGB();
 		
 	}
 }

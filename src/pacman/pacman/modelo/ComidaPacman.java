@@ -9,6 +9,6 @@ public class ComidaPacman extends CasillaPacman{
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		this.nombreImagen = nombreImagen;
-		this.color = Color.GRAY.getRGB();
+		this.color = Color.LIGHT_GRAY.getRGB();
 	}
 }

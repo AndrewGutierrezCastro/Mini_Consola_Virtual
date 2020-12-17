@@ -45,7 +45,6 @@ public class JugadorPacman extends CasillaPacman{
 		int x = this.posicionX;
 		int y = this.posicionY;
 		
-		System.out.println(direccionMovimiento);
 		switch(this.direccionMovimiento) {
 		case "UP":
 			x--;
@@ -80,9 +79,5 @@ public class JugadorPacman extends CasillaPacman{
 			return true;
 		}
 		return false;
-	}
-	
-	public void verificarMuro() {
-		
 	}
 }
