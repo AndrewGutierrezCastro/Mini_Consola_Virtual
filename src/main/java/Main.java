@@ -1,5 +1,5 @@
 import java.awt.EventQueue;
-
+import Helpers.Tamanno;
 import consola.Consola;
 import controlador.DispositivoEntrada;
 import controlador.Teclado;
@@ -10,16 +10,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		main2(args); 
+		main3(args);
 		
-		  main2(args); 
-		  DispositivoEntrada dp = new Teclado();
-		  System.out.println("Hola mundo"); 
-			/*
-			 * FileReader file =
-			 * ManejoArchivo.readJson(TipoComando.ACTUALIZARPANTALLA.toString()); Comando
-			 * comando = CreadorObjetos.getComando(file); String str =
-			 * CreadorObjetos.getJson(comando); dp.enviarMensaje(str);
-			 */ 
+		DispositivoEntrada dp = new Teclado();
+		  //DispositivoEntrada dp = new Teclado();
+		  //System.out.println("Hola mundo"); 
+			
+			  
 		  
 		  
 	}
@@ -28,8 +26,19 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ControladorPantalla ctPan = new ControladorPantalla();
-					Consola consola = new SpaceInvader();
+					ControladorPantalla ctPan = new ControladorPantalla(Tamanno.NORMAL);				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	public static void main3(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Consola consola = new SpaceInvader(Tamanno.NORMAL);					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

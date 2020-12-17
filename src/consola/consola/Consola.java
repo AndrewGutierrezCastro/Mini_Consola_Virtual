@@ -9,7 +9,7 @@ import controlador.ConstantesComunicacion;
 
 public class Consola {
 	
-	protected ArrayList<String> colaRawComandos;
+	public ArrayList<String> colaRawComandos;
 	protected ArrayList<Comando> colaComandos;
 	
 	private Servidor servidor;
@@ -40,8 +40,11 @@ public class Consola {
 	
 	private void crearComunicaciones() {
 		try {
-			servidor = new Servidor(ConstantesComunicacion.Controlador_Consola);
+			servidor = new Servidor(ConstantesComunicacion.Controlador_Consola);		
 			cliente = new Cliente(ConstantesComunicacion.Consola_Pantalla);
+			
+			cliente.abrirSocket();
+			servidor.aceptarCliente();
 		} catch (IOException e) {
 			System.out.println("La consola tuvo un error al intentar establecer conexion con la pantalla o el controlador");
 			e.printStackTrace();

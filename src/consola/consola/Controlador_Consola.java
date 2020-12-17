@@ -25,10 +25,10 @@ public class Controlador_Consola implements Runnable{
 
 		while(true) {		
 			try {
-				Thread.sleep(100);
+				Thread.sleep(10);
 				
 				recibirInformacion();
-				System.out.println(colaRawComandos.get(0));
+				//System.out.println(colaRawComandos.get(0));
 				
 			} catch (InterruptedException e) {
 				System.out.println("No se pudo ejecutar el comando");
@@ -37,15 +37,10 @@ public class Controlador_Consola implements Runnable{
 	}
 	
 	private void recibirInformacion() {
-		try {
-			servidor.aceptarCliente();
-			servidor.esperarMensaje();
-			servidor.cerrarCliente();
-			colaRawComandos.add(servidor.getMensaje());
-		} catch (IOException e) {
-			System.out.println("Ocurrio un error recibiendo el mensaje en el Modelo de la Pantalla");
-			e.printStackTrace();
-		}
+		//servidor.aceptarCliente();
+		servidor.esperarMensaje();
+		//servidor.cerrarCliente();
+		colaRawComandos.add(servidor.getMensaje());
 	}
 
 }

@@ -22,8 +22,8 @@ public class Teclado extends DispositivoEntrada implements KeyListener, ActionLi
 	private void procesarEntrada(String tecla) {
 		ArrayList<String> acciones = new ArrayList<String>();
 		acciones.add(tecla);
-		enviarComando(new Comando(TipoComando.DISPOSITIVOENTRADA, null, acciones));
-		System.out.println("Comando enviado: "+acciones);
+		enviarComando(new Comando(TipoComando.DE, null, acciones));
+		//System.out.println("Comando enviado: "+acciones);
 	}
 	
 	@Override

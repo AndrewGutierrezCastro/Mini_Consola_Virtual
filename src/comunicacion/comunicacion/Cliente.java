@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
 import controlador.ConstantesComunicacion;
 
 public class Cliente implements ConstantesComunicacion{
@@ -17,23 +16,24 @@ public class Cliente implements ConstantesComunicacion{
 	protected DataOutputStream salidaServidor; //La salida de datos de servidor
 	private String respuesta;//respuesta del servidor
 	private int puerto;
+	private OutputStream streamOutput;
+	
 	public Cliente(int pPuerto) throws UnknownHostException, IOException {
-		puerto = pPuerto;
+		puerto = pPuerto;	
+		
 	}
 	
 	public void enviarMensaje(String pMensaje) {
 		//necesario para enviar el mensaje al servidor
-		OutputStream streamOutput;
-		
 		try {
-			abrirSocket();
-			
 			//enviar el mensaje al servidor
-			streamOutput = clienteSocket.getOutputStream();
-			salidaServidor = new DataOutputStream(streamOutput);
-			salidaServidor.writeBytes(pMensaje);
 			
-			clienteSocket.close();
+			salidaServidor.writeBytes(pMensaje+"\n");
+			salidaServidor.flush();
+			//System.out.println("Cliente"+pMensaje);
+			//System.out.println("Mensaje enviado");
+			
+			
 		} catch (IOException e) {
 			System.err.println("Error al enviar el mensaje: "+pMensaje);
 			System.out.println("Puerto: "+puerto);
@@ -61,12 +61,23 @@ public class Cliente implements ConstantesComunicacion{
 		}
 	}
 	
-	private void abrirSocket() throws UnknownHostException, IOException {
+	public void abrirSocket() throws UnknownHostException, IOException {
 		if(clienteSocket == null || clienteSocket.isClosed()) {
 			clienteSocket = new Socket(HOST, puerto);}
+		
+		//Instanciar el Output de info
+		streamOutput = clienteSocket.getOutputStream();
+		salidaServidor = new DataOutputStream(streamOutput);
+
+		System.out.println("Socket abierto");
+	}
+	
+	public void cerrarSocket() throws IOException {
+		clienteSocket.close();
 	}
 	
 	public String getRespuesta() {
 		return respuesta;
 	}
 }
+

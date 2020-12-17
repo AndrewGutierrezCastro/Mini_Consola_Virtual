@@ -44,19 +44,31 @@ public class Tablero implements ConstantesPantalla{
 	}
 
 	public void actualizar(Comando comando) {
-		
-		for (Casilla casilla : comando.pixeles) {
-			botones[casilla.posicionX][casilla.posicionY].
+		if(comando == null)
+			return ;
+		for (Casilla casilla : comando.p) {
+			if( casilla.X >= 0 && casilla.X <= botones.length &&
+				casilla.Y >= 0 && casilla.Y <= botones[0].length) {
+			botones[casilla.X][casilla.Y].
 				setBackground(
-						new Color(casilla.color));
+						new Color(casilla.c));
 			
-			botones[casilla.posicionX][casilla.posicionY].setContentAreaFilled(false);
-			botones[casilla.posicionX][casilla.posicionY].setOpaque(true);
-			botones[casilla.posicionX][casilla.posicionY].setIcon(getImagen(casilla.nombreImagen));
+				//botones[casilla.posicionX][casilla.posicionY].setContentAreaFilled(false);
+				//botones[casilla.posicionX][casilla.posicionY].setOpaque(true);
+				if(casilla.nI == "clear") {
+					botones[casilla.X][casilla.Y].setIcon(null);
+					
+				}else {
+					botones[casilla.X][casilla.Y].setIcon(getImagen(casilla.nI));
+				}
+			}
 		}
 	}
 	
 	private Icon getImagen(String nombreImagen) {
+		if(nombreImagen == null) {
+			return null;
+		}
 		if(imagenes.get(nombreImagen) == null) {
 			ImageIcon icon = (ImageIcon) Helpers.ManejoImagenes.getImagenResized(nombreImagen, ".png", 15, 15);
 			imagenes.put(nombreImagen, icon);
