@@ -47,8 +47,9 @@ public class ManejoImagenes {
 			Image newimg = IconReescalada.getScaledInstance(anchoRoot, altoRoot,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
 			iconoImagen = new ImageIcon(newimg);
 		} catch (IOException e) {
+			/*
 			System.out.print(e.getMessage());
-			System.out.println(" No se pudo cargar la imagen, " + nombreImagen +" "+path );
+			System.out.println(" No se pudo cargar la imagen, " + nombreImagen +" "+path );*/
 			
 		}
 		return iconoImagen;
