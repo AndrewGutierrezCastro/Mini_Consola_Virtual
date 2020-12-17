@@ -39,7 +39,7 @@ public class Pacman extends Consola implements Runnable{
 				this.matrizPacman[i][j] = new ComidaPacman(i, j, "");
 			}
 		}
-		Comando comando = new Comando(TipoComando.ACTUALIZARPANTALLA, arr , null);
+		Comando comando = new Comando(TipoComando.AP, arr , null);
 		this.colaComandos.add(comando);
 	}
 	
@@ -49,11 +49,11 @@ public class Pacman extends Consola implements Runnable{
 		 */
 		
 		Comando comando = CreadorObjetos.getComando(ManejoArchivo.readJson("PACMANMURO"));
-		for (Casilla casilla : comando.pixeles) {
+		for (Casilla casilla : comando.p) {
 			
-			casilla.nombreImagen = "";
-			this.matrizPacman[casilla.posicionX][casilla.posicionY] = new MuroPacman(casilla.posicionX, 
-					casilla.posicionY,"muroPacman");
+			casilla.nI = "";
+			this.matrizPacman[casilla.X][casilla.Y] = new MuroPacman(casilla.X, 
+					casilla.Y,"muroPacman");
 		}
 		
 		this.colaComandos.add(comando);
@@ -75,7 +75,7 @@ public class Pacman extends Consola implements Runnable{
 		 */
 		ArrayList<Casilla> arr = new ArrayList<Casilla>();
 		arr.add(new Casilla(casilla.posicionX, casilla.posicionY, casilla.color, casilla.nombreImagen));
-		Comando comando = new Comando(TipoComando.ACTUALIZARPANTALLA, arr , null);
+		Comando comando = new Comando(TipoComando.AP, arr , null);
 		return comando;
 	}
 
@@ -91,7 +91,7 @@ public class Pacman extends Consola implements Runnable{
 				if (this.colaRawComandos.size() > 0) {
 					
 					comando = CreadorObjetos.getComando(this.colaRawComandos.remove(0));		
-					this.jugador.setDireccion(comando.acciones.get(0));
+					this.jugador.setDireccion(comando.a.get(0));
 					
 //					CasillaPacman[] casillas = this.jugador.moverse();
 //					if (casillas[0] != null) {

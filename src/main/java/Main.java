@@ -3,6 +3,7 @@ import Helpers.Tamanno;
 import consola.Consola;
 import controlador.DispositivoEntrada;
 import controlador.Teclado;
+import pacman.modelo.Pacman;
 import pantalla.controlador.ControladorPantalla;
 import spaceInvader.modelo.SpaceInvader;
 
@@ -38,7 +39,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Consola consola = new SpaceInvader(Tamanno.NORMAL);					
+					Consola consola = new Pacman();					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
