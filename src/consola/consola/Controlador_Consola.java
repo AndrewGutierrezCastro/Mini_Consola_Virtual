@@ -37,15 +37,10 @@ public class Controlador_Consola implements Runnable{
 	}
 	
 	private void recibirInformacion() {
-		try {
-			servidor.aceptarCliente();
-			servidor.esperarMensaje();
-			servidor.cerrarCliente();
-			colaRawComandos.add(servidor.getMensaje());
-		} catch (IOException e) {
-			System.out.println("Ocurrio un error recibiendo el mensaje en el Modelo de la Pantalla");
-			e.printStackTrace();
-		}
+		//servidor.aceptarCliente();
+		servidor.esperarMensaje();
+		//servidor.cerrarCliente();
+		colaRawComandos.add(servidor.getMensaje());
 	}
 
 }

@@ -43,8 +43,9 @@ public class Tablero implements ConstantesPantalla{
 		}
 	}
 
-	public void actualizar(Comando comando) throws NullPointerException {
-		
+	public void actualizar(Comando comando) {
+		if(comando == null)
+			return ;
 		for (Casilla casilla : comando.p) {
 			if( casilla.X >= 0 && casilla.X <= botones.length &&
 				casilla.Y >= 0 && casilla.Y <= botones[0].length) {

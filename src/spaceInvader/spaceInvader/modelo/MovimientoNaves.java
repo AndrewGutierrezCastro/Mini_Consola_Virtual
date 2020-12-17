@@ -54,6 +54,8 @@ public class MovimientoNaves implements Runnable, TiemposHilos{
 		HashMap<String, Posicion> posicionesAnteriores = new HashMap<String, Posicion>();
 		HashMap<String, Nave> posicionesNuevas = new HashMap<String, Nave>();
 		Posicion posicionAnterior;
+		//Primero mover a las naves vivas
+		//y cargar los maps con las posiciones antiguas y nuevas
 		for (Nave nave : spaceInvader.enemigos) {
 			if(nave.isVivo()) {
 				posicionAnterior = nave.posicion.Mover(direccion);
@@ -62,6 +64,8 @@ public class MovimientoNaves implements Runnable, TiemposHilos{
 			}
 			
 		}
+		//Revisar si una posicion vieja no esta presente en las posiciones nuevas
+		//se debe borrar
 		for (String posicionVieja : posicionesAnteriores.keySet()) {
 			if(!posicionesNuevas.containsKey(posicionVieja)) {
 				posicionAnterior = posicionesAnteriores.get(posicionVieja);
@@ -69,12 +73,15 @@ public class MovimientoNaves implements Runnable, TiemposHilos{
 			}
 			
 		}
+		//Si una posicion nueva no esta en las posiciones viejas entonces
+		//es una posicion jamas antes enviada, por lo tanto pintarla
 		for (String posicionNueva : posicionesNuevas.keySet()) {
 			if(!posicionesAnteriores.containsKey(posicionNueva)) {
 				Nave nave = posicionesNuevas.get(posicionNueva);
 				casillasApintar.add(new Casilla(nave.posicion.x, nave.posicion.y,Color.DARK_GRAY.getRGB(), nave.nombreImagen));
 			}
 		}
+		//Con estos 3 procesos se reduce el trafico del socket de toda una matriz de enemigos a un par de columnas
 		spaceInvader.enviarPixeles(casillasAborrar);
 		Thread.sleep(100);
 		spaceInvader.enviarPixeles(casillasApintar);

@@ -19,7 +19,7 @@ public class Disparo implements Runnable, TiemposHilos{
 	private HashMap<String, Nave> posiciones;
 	private Posicion posicion;
 	private int bordeDisparo;
-	
+	private Jugador jugador;
 	
 	public Disparo(SpaceInvader pSpaceInvader, int pBordeDisparo) {
 		super();
@@ -27,6 +27,8 @@ public class Disparo implements Runnable, TiemposHilos{
 		this.spaceInvader = pSpaceInvader;
 		this.enemigos = spaceInvader.enemigos;
 		this.posicion = spaceInvader.jugador.posicion.Copy();
+		this.jugador = spaceInvader.jugador;
+		this.jugador.listaDisparos.add(this);
 	}
 
 
@@ -41,16 +43,17 @@ public class Disparo implements Runnable, TiemposHilos{
 				MapUtils.populateMap(posiciones, enemigos, Nave::getPosicionToString);//mapear las naves con la posicion
 				if(posiciones.get(posicion.toString()) != null && posiciones.get(posicion.toString()).isVivo()) {
 					//existe una nave en esa posicion
-					//System.out.println("Dispare a la nave: "+posiciones.get(posicion.toString()));
 					spaceInvader.enviarPixel(new Casilla(posicion.x, posicion.y, Color.RED.getRGB()));
 					posiciones.get(posicion.toString()).setVivo(false);
+					jugador.listaDisparos.remove(this);
 					break;
 				}
 				posicionAnterior = posicion.Mover(Direccion.ARRIBA);
 				posiciones.clear();
+				//Borrar el pixel anterior 
 				spaceInvader.enviarPixel(new Casilla(posicionAnterior.x, posicionAnterior.y, Color.DARK_GRAY.getRGB()));
+				//Pintar el nuevo pixel
 				spaceInvader.enviarPixel(new Casilla(posicion.x, posicion.y, Color.DARK_GRAY.getRGB(), spaceInvader.jugador.nombreImagenDisparo));
-				//System.out.println(posicion+" "+spaceInvader.jugador.nombreImagenDisparo);
 				
 				Thread.sleep(velocidadDisparo);
 				

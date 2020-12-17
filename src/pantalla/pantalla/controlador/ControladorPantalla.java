@@ -1,5 +1,7 @@
 package pantalla.controlador;
 
+import java.io.IOException;
+
 import Helpers.Tamanno;
 import comunicacion.Comando;
 import comunicacion.CreadorObjetos;
@@ -19,6 +21,16 @@ public class ControladorPantalla implements Runnable{
 		hilo.start();
 		
 	}
+	private void aceptarCliente() {
+		try {
+			mPantalla.servidor.aceptarCliente();
+		} catch (IOException e) {
+			System.out.println("No se pudo aceptar al cliente consola en la pantalla");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	private void ejecutarComando() {
 		for (Comando comando : mPantalla.colaComandos) {
 			try {
@@ -31,17 +43,23 @@ public class ControladorPantalla implements Runnable{
 	@Override
 	public void run() {
 		Comando comando;
+		//aceptarCliente();
+		String strComando ="";
 		while(true) {		
 			try {
 				Thread.sleep(1);
 				if(mPantalla.colaRawComandos.size() > 0) {
-					for (int i = 0; i < mPantalla.colaRawComandos.size(); i++) {
-						mPantalla.colaComandos.add(CreadorObjetos.getComando(mPantalla.colaRawComandos.remove(0)));
-					}
+					
+					strComando = mPantalla.colaRawComandos.get(0);
+
+					mPantalla.colaComandos.add(CreadorObjetos.getComando(mPantalla.colaRawComandos.remove(0)));
 					ejecutarComando();
+					//System.out.println(strComando);
 				}
 			} catch (InterruptedException e) {
 				System.out.println("No se pudo ejecutar el comando");
+			} catch (com.google.gson.JsonSyntaxException gsonE) {
+				System.out.println("El comando no se pudo parsear"+strComando );
 			}
 		}
 	}

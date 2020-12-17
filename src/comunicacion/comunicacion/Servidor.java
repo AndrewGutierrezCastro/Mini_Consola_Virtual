@@ -11,6 +11,7 @@ import java.net.Socket;
 
 import controlador.ConstantesComunicacion;
 
+
 public class Servidor implements ConstantesComunicacion{
 	/* Clase: Servidor
 	 * La clase para recibir informacion de un cliente
@@ -20,15 +21,28 @@ public class Servidor implements ConstantesComunicacion{
 	protected ServerSocket serverSocket;	//Socket del servidor
 	protected Socket clienteSocket; //socket que va a utilizar el cliente
 	protected DataOutputStream salidaCliente; //La salida de datos de cliente
+	
+	private InputStream inputStream; 
+	private InputStreamReader inputStreamReader;
+	private BufferedReader entrada;
+	
 	public Servidor(int pPuerto) throws IOException {
 		serverSocket = new ServerSocket(pPuerto); //Puerto es un numero constante
+		
+		serverSocket.setReceiveBufferSize(serverSocket.getReceiveBufferSize()*2);
 		//de la interfaz de constantes para comunicacion.
-		clienteSocket = new Socket();
+		
 	}
 	public void aceptarCliente() throws IOException {
-		//Aceptar al cliente
+		//Aceptar e instanciar localmente al atributo cliente
 		clienteSocket = serverSocket.accept();
-		//System.out.println("cliente aceptado");
+
+		//obtener el stream de datos del cliente
+		inputStream = clienteSocket.getInputStream();
+		inputStreamReader = new InputStreamReader(inputStream);
+		entrada = new BufferedReader(inputStreamReader);
+		
+		System.out.println("cliente aceptado");
 	}
 	
 	public void cerrarServidor() throws IOException {
@@ -43,29 +57,32 @@ public class Servidor implements ConstantesComunicacion{
 	
 	public void esperarMensaje() {
 		//Necesario para recibir el mensaje del cliente
-		InputStream inputStream; 
-		InputStreamReader inputStreamReader;
-		BufferedReader entrada;
-		
-		try {
-				
-			inputStream = clienteSocket.getInputStream();
-			inputStreamReader = new InputStreamReader(inputStream);
-			entrada = new BufferedReader(inputStreamReader);
-			
-			String linea;
-			mensaje = "";
-			while((linea = entrada.readLine()) != null) //Mientras haya lineas desde el cliente
-            {
-                mensaje += linea;//formar linea a linea el mensaje
-                
-            }
 
-			//System.out.println("mensaje recibido "+mensaje);
+		char[] linea;
+		mensaje = "";
+		int ah, al;
+		try {
+			/*El cliente envia en formato UTF los dos primeros bytes son para  */
+			/*
+			ah = entrada.read();
+			al = entrada.read(); //Mientras haya lineas desde el cliente
+			ah = Integer.rotateLeft(ah, 16);
+			ah += al;
+			linea = new char[ah];
+			entrada.read(linea, 0, ah);
+			mensaje = String.valueOf(linea);*/
+			
+			mensaje = entrada.readLine();
+			//System.out.println(mensaje);
 		} catch (IOException e) {
-			System.err.println("No se pudo recibir el mensaje del cliente");
-		}
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		 
+
 		
+		//System.out.println("mensaje recibido "+mensaje);
+
 		
 	}
 	
@@ -81,3 +98,4 @@ public class Servidor implements ConstantesComunicacion{
 		return mensaje;
 	}
 }
+

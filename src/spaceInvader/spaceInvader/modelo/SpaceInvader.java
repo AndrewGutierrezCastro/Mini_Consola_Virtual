@@ -19,7 +19,7 @@ public class SpaceInvader extends Consola {
 	private Thread hiloMovimientoEnemigos;
 	private Thread hiloProcesadorAcciones;
 	public Tamanno tamanno;
-	public final int filasEnemigos = 3, colEnemigos = 8;
+	public final int filasEnemigos = 2, colEnemigos = 8;
 	
 	
 	public SpaceInvader(Tamanno tamanno) {
@@ -27,7 +27,7 @@ public class SpaceInvader extends Consola {
 		this.tamanno = tamanno;
 		enemigos = new ArrayList<Nave>();
 		crearEnemigos();
-		mostrarEnemigos();
+		//mostrarEnemigos();
 		
 		movimientoNaves = new MovimientoNaves(this);
 		hiloMovimientoEnemigos = new Thread(movimientoNaves);
@@ -80,6 +80,7 @@ public class SpaceInvader extends Consola {
 	
 	public void enviarPixeles(ArrayList<Casilla> pPixeles) {
 		this.colaComandos.add(new Comando(TipoComando.AP, pPixeles , null));
+		System.out.println(colaComandos.get(colaComandos.size()-1));
 	}
 	
 	public void enviarPixel(Casilla pCasilla) {
