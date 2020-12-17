@@ -32,22 +32,22 @@ public class Comando {
 	}
 	 * */
 	public enum TipoComando{
-		ACTUALIZARPANTALLA,
-		DISPOSITIVOENTRADA;
+		AP,
+		DE;
 	}
-	private TipoComando comando;
-	public List<Casilla> pixeles;
-	public List<String> acciones;
+	private TipoComando c;
+	public List<Casilla> p;
+	public List<String> a;
 	public Comando(TipoComando comando, List<Casilla> pixeles, List<String> acciones) {
 		super();
-		this.comando = comando;
-		this.pixeles = pixeles;
-		this.acciones = acciones;
+		this.c = comando;
+		this.p = pixeles;
+		this.a = acciones;
 	}
 	
 	@Override
 	public String toString() {
-		return "Comando [comando=" + comando + ", pixeles=" + pixeles + ", acciones=" + acciones + "]";
+		return "Comando [comando=" + c + ", pixeles=" + p + ", acciones=" + a + "]";
 	}
 	
 	

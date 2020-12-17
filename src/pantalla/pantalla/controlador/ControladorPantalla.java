@@ -1,5 +1,8 @@
 package pantalla.controlador;
 
+import java.io.IOException;
+
+import Helpers.Tamanno;
 import comunicacion.Comando;
 import comunicacion.CreadorObjetos;
 import pantalla.modelo.ModeloPantalla;
@@ -10,32 +13,53 @@ public class ControladorPantalla implements Runnable{
 	public ModeloPantalla mPantalla;
 	protected VistaPantalla vPantalla;
 	private Thread hilo;
-	public ControladorPantalla() {
-		mPantalla = new ModeloPantalla();
+	public ControladorPantalla(Tamanno tamanno) {
+		mPantalla = new ModeloPantalla(tamanno);
 		vPantalla = new VistaPantalla();
 		vPantalla.cargarTablero(mPantalla.tablero);
 		hilo = new Thread(this);
 		hilo.start();
 		
 	}
+	private void aceptarCliente() {
+		try {
+			mPantalla.servidor.aceptarCliente();
+		} catch (IOException e) {
+			System.out.println("No se pudo aceptar al cliente consola en la pantalla");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	private void ejecutarComando() {
 		for (Comando comando : mPantalla.colaComandos) {
-			mPantalla.tablero.actualizar(comando);
+			try {
+				mPantalla.tablero.actualizar(comando);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	@Override
 	public void run() {
 		Comando comando;
+		//aceptarCliente();
+		String strComando ="";
 		while(true) {		
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1);
 				if(mPantalla.colaRawComandos.size() > 0) {
-					comando = CreadorObjetos.getComando(mPantalla.colaRawComandos.remove(0));
-					mPantalla.colaComandos.add(comando);
+					
+					strComando = mPantalla.colaRawComandos.get(0);
+
+					mPantalla.colaComandos.add(CreadorObjetos.getComando(mPantalla.colaRawComandos.remove(0)));
 					ejecutarComando();
+					//System.out.println(strComando);
 				}
 			} catch (InterruptedException e) {
 				System.out.println("No se pudo ejecutar el comando");
+			} catch (com.google.gson.JsonSyntaxException gsonE) {
+				System.out.println("El comando no se pudo parsear"+strComando );
 			}
 		}
 	}

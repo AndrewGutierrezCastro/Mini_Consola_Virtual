@@ -18,8 +18,8 @@ public class ModeloPantalla implements Runnable{
 	private Thread hilo;//Este hilo se encarga de escuchar solicitudes y sumarlas a la cola
 	//recibe informacion entonces debe usar servidor
 	public Servidor servidor;
-	public ModeloPantalla() {
-		tablero = new Tablero(Tamanno.NORMAL);
+	public ModeloPantalla(Tamanno tamanno) {
+		tablero = new Tablero(tamanno);
 		colaComandos = new ArrayList<Comando>();
 		colaRawComandos = new ArrayList<String>();
 		crearServidor();
@@ -35,6 +35,7 @@ public class ModeloPantalla implements Runnable{
 	private void crearServidor() {
 		try {
 			servidor = new Servidor(ConstantesComunicacion.Consola_Pantalla);
+			
 		} catch (IOException e) {
 			System.out.println("No se puede crear el servidor en Modelo de pantalla");
 		}
@@ -42,10 +43,10 @@ public class ModeloPantalla implements Runnable{
 	
 	@Override
 	public void run() {
-		
+		aceptarCliente();
 		while(true) {		
 			try {
-				Thread.sleep(100);
+				Thread.sleep(10);
 				recibirInformacion();
 			} catch (InterruptedException e) {
 				System.out.println("No se puedo instanciar el comando");
@@ -55,16 +56,23 @@ public class ModeloPantalla implements Runnable{
 		
 	}
 	
-	private void recibirInformacion() {
+	private void aceptarCliente() {
 		try {
 			servidor.aceptarCliente();
-			servidor.esperarMensaje();
-			servidor.cerrarCliente();
-			colaRawComandos.add(servidor.getMensaje());
 		} catch (IOException e) {
-			System.out.println("Ocurrio un error recibiendo el mensaje en el Modelo de la Pantalla");
+			System.out.println("La pantalla tuvo problemas en conectarse a la consola");
 			e.printStackTrace();
 		}
+		
+	}
+
+	private void recibirInformacion() {
+		
+		//servidor.aceptarCliente();
+		servidor.esperarMensaje();
+		//servidor.cerrarCliente();
+		colaRawComandos.add(servidor.getMensaje());
+		//System.out.println(servidor.getMensaje());
 	}
 	
 }
