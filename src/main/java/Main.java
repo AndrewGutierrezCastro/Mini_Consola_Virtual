@@ -39,7 +39,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Consola consola = new Pacman();					
+					Consola consola = new SpaceInvader(Tamanno.NORMAL);					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

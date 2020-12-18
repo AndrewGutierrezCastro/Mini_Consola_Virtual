@@ -37,7 +37,7 @@ public class Disparo implements Runnable, TiemposHilos{
 		posiciones = new HashMap<String, Nave>();
 		Posicion posicionAnterior;
 		posicionAnterior = posicion.Mover(Direccion.ARRIBA);
-		while(Math.abs(bordeDisparo - posicion.x) > 0) {
+		while(Math.abs(bordeDisparo - posicion.x) > 0 && !spaceInvader.juegoTerminado) {
 			
 			try {
 				MapUtils.populateMap(posiciones, enemigos, Nave::getPosicionToString);//mapear las naves con la posicion

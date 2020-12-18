@@ -20,7 +20,7 @@ public class ProcesadorAcciones implements Runnable, TiemposHilos{
 	@Override
 	public void run() {
 		Comando comando;
-		while(true) {
+		while(!spaceInvader.juegoTerminado) {
 			try {
 				Thread.sleep(hiloControl_Consola);
 				if(spaceInvader.colaRawComandos.size() > 0) {

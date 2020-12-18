@@ -33,9 +33,10 @@ public class Comando {
 	 * */
 	public enum TipoComando{
 		AP,
-		DE;
+		DE,
+		GO;
 	}
-	private TipoComando c;
+	public TipoComando c;
 	public List<Casilla> p;
 	public List<String> a;
 	public Comando(TipoComando comando, List<Casilla> pixeles, List<String> acciones) {

@@ -12,8 +12,8 @@ import javax.swing.GroupLayout.Alignment;
 
 public class VistaPantalla {
 
-	private JFrame frame;
-	private JPanel panel;
+	public JFrame frame;
+	public JPanel panel;
 	
 	public VistaPantalla() {
 		initialize();

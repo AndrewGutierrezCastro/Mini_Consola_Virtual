@@ -19,8 +19,8 @@ public class SpaceInvader extends Consola {
 	private Thread hiloMovimientoEnemigos;
 	private Thread hiloProcesadorAcciones;
 	public Tamanno tamanno;
-	public final int filasEnemigos = 2, colEnemigos = 8;
-	
+	public final int filasEnemigos = 1, colEnemigos = 8;
+	public Boolean juegoTerminado = false;
 	
 	public SpaceInvader(Tamanno tamanno) {
 		super();
@@ -60,7 +60,7 @@ public class SpaceInvader extends Consola {
 		 * */
 		Nave enemigo;
 		for (int i = 0; i < filasEnemigos; i++) {
-			for (int j = 41; j < colEnemigos+41; j++) {
+			for (int j = 0; j < colEnemigos; j++) {
 				enemigo = new Nave(new Posicion(i,j));
 				enemigos.add(enemigo);
 				
@@ -80,7 +80,7 @@ public class SpaceInvader extends Consola {
 	
 	public void enviarPixeles(ArrayList<Casilla> pPixeles) {
 		this.colaComandos.add(new Comando(TipoComando.AP, pPixeles , null));
-		System.out.println(colaComandos.get(colaComandos.size()-1));
+		//System.out.println(colaComandos.get(colaComandos.size()-1));
 	}
 	
 	public void enviarPixel(Casilla pCasilla) {
@@ -89,4 +89,15 @@ public class SpaceInvader extends Consola {
 		this.colaComandos.add(new Comando(TipoComando.AP, pPixeles , null));
 	}
 
+	public Boolean getJuegoTerminado() {
+		return juegoTerminado;
+	}
+
+	public void setJuegoTerminado(Boolean juegoTerminado) {
+		this.colaComandos.add(new Comando(TipoComando.GO, null, null));
+		this.juegoTerminado = juegoTerminado;
+		
+	}
+
+	
 }

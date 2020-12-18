@@ -14,7 +14,7 @@ public class MovimientoNaves implements Runnable, TiemposHilos{
 	public MovimientoNaves(SpaceInvader spaceInvader) {
 		super();
 		this.spaceInvader = spaceInvader;
-		direccion = Direccion.DERECHA;
+		direccion = Direccion.IZQUIERDA;
 	}
 	
 	private void revisarYmover() throws InterruptedException {
@@ -54,11 +54,12 @@ public class MovimientoNaves implements Runnable, TiemposHilos{
 		HashMap<String, Posicion> posicionesAnteriores = new HashMap<String, Posicion>();
 		HashMap<String, Nave> posicionesNuevas = new HashMap<String, Nave>();
 		Posicion posicionAnterior;
+	
 		//Primero mover a las naves vivas
 		//y cargar los maps con las posiciones antiguas y nuevas
 		for (Nave nave : spaceInvader.enemigos) {
-			if(nave.isVivo()) {
-				posicionAnterior = nave.posicion.Mover(direccion);
+			posicionAnterior = nave.posicion.Mover(direccion);
+			if(nave.isVivo()) {				
 				posicionesNuevas.put(nave.posicion.x+","+nave.posicion.y, nave);
 				posicionesAnteriores.put(posicionAnterior.x+","+posicionAnterior.y, posicionAnterior);			
 			}
@@ -85,13 +86,14 @@ public class MovimientoNaves implements Runnable, TiemposHilos{
 		spaceInvader.enviarPixeles(casillasAborrar);
 		Thread.sleep(100);
 		spaceInvader.enviarPixeles(casillasApintar);
-		//System.out.println(casillasAborrar);
-		//System.out.println(casillasApintar);
+		if(posicionesAnteriores.size() <= 0 && posicionesNuevas.size() <= 0) {
+			spaceInvader.setJuegoTerminado(true);
+		}
 	}
 
 	@Override
 	public void run() {
-		while (true) {
+		while (!spaceInvader.juegoTerminado) {
 			
 			try {
 				Thread.sleep(velocidadMovimiento);
