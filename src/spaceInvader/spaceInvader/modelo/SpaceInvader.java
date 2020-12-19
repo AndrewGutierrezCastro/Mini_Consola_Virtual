@@ -59,7 +59,7 @@ public class SpaceInvader extends Consola {
 		 * Este metodo instancia los enemigos en la posicion predeterminada
 		 * */
 		Nave enemigo;
-		for (int i = 0; i < filasEnemigos; i++) {
+		for (int i = 47; i < filasEnemigos+47; i++) {
 			for (int j = 0; j < colEnemigos; j++) {
 				enemigo = new Nave(new Posicion(i,j));
 				enemigos.add(enemigo);

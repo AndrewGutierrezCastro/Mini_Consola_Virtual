@@ -63,6 +63,9 @@ public class MovimientoNaves implements Runnable, TiemposHilos{
 				posicionesNuevas.put(nave.posicion.x+","+nave.posicion.y, nave);
 				posicionesAnteriores.put(posicionAnterior.x+","+posicionAnterior.y, posicionAnterior);			
 			}
+			if(nave.posicion.x == spaceInvader.tamanno.x-1) {
+				spaceInvader.setJuegoTerminado(true);
+			}
 			
 		}
 		//Revisar si una posicion vieja no esta presente en las posiciones nuevas
