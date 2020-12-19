@@ -17,8 +17,9 @@ public class JugadorPacman extends CasillaPacman{
 		this.nombreImagen = nombreImagen;
 		this.color = Color.YELLOW.getRGB();
 		this.espaciovacio = new VacioPacman(this.posicionX,this.posicionY,"");
-		this.direccionMovimiento = "LEFT";
-		// TODO Auto-generated constructor stub
+		//this.direccionMovimiento = "LEFT";
+		this.direccionMovimiento = "IZQUIERDA";
+		
 	}
 
 	public CasillaPacman[] moverse() {
@@ -45,17 +46,32 @@ public class JugadorPacman extends CasillaPacman{
 		int x = this.posicionX;
 		int y = this.posicionY;
 		
+//		switch(this.direccionMovimiento) {
+//		case "UP":
+//			x--;
+//			break;
+//		case "DOWN":
+//			x++;
+//			break;
+//		case "LEFT":
+//			y--;
+//			break;
+//		case "RIGHT":
+//			y++;
+//			break;
+//		}
+		
 		switch(this.direccionMovimiento) {
-		case "UP":
+		case "ARRIBA":
 			x--;
 			break;
-		case "DOWN":
+		case "ABAJO":
 			x++;
 			break;
-		case "LEFT":
+		case "IZQUIERDA":
 			y--;
 			break;
-		case "RIGHT":
+		case "DERECHA":
 			y++;
 			break;
 		}

@@ -87,7 +87,7 @@ public class Pacman extends Consola implements Runnable{
 		while(true) {	
 			
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 				
 				if (this.colaRawComandos.size() > 0) {
 					
