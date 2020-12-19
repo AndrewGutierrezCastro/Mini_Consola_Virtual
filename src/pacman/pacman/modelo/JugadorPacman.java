@@ -75,6 +75,7 @@ public class JugadorPacman extends CasillaPacman{
 			y++;
 			break;
 		}
+		//System.out.println(this.direccionMovimiento);
 		posicion[0] = x;
 		posicion[1] = y;
 		return posicion;
